@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyByShooting : MonoBehaviour {
+public class PlayerShooting : MonoBehaviour {
 
     LineRenderer line;
     Ray ray = new Ray();
@@ -46,12 +46,14 @@ public class DestroyByShooting : MonoBehaviour {
         line.SetPosition(0, ray.origin);
         ray.direction = transform.forward;
         RaycastHit hit;
-
+       
         if (Physics.Raycast(ray, out hit, shootRange, shootableMask))
         {
             Debug.Log(hit.point);
             Debug.DrawLine(ray.origin, hit.point);
             line.SetPosition(1, hit.point);
+            GameObject hitObject = hit.collider.gameObject;
+            Destroy(hitObject);
         } else
         {
             line.SetPosition(1, ray.origin + ray.direction * shootRange);
