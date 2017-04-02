@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu]
 public class AllItems : ScriptableObject {
 
 
-    List<Item> allItems = new List<Item>();
+   public List<Item> list = new List<Item>();
 
 }

@@ -19,6 +19,8 @@ public class PlayerShooting : MonoBehaviour {
 
     public GameObject woodItem;
 
+    public AllItems items;
+
 	void Start () {
         line = GetComponent<LineRenderer>();
         shootableMask = LayerMask.GetMask("Shootable");
@@ -56,7 +58,7 @@ public class PlayerShooting : MonoBehaviour {
             line.SetPosition(1, hit.point);
             GameObject hitObject = hit.collider.gameObject;
             Destroy(hitObject);
-            Instantiate(woodItem, hit.point, Quaternion.identity);
+            Instantiate(randomItem(), hit.point, Random.rotation);
         } else
         {
             line.SetPosition(1, ray.origin + ray.direction * shootRange);
@@ -64,4 +66,9 @@ public class PlayerShooting : MonoBehaviour {
         line.enabled = true;
         timer = 0;
 	}
+
+    GameObject randomItem()
+    {
+        return items.list[Random.Range(0, items.list.Count)].gameObject;
+    }
 }
