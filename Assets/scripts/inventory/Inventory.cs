@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using System.Linq;
 
 public class Inventory : MonoBehaviour {
-    public const int inventorySlots = 5;
+    public const int inventorySlots = 6;
 
     public Item[] items = new Item[inventorySlots];
     public Image[] itemImages = new Image[inventorySlots];
