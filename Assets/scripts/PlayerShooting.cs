@@ -17,6 +17,8 @@ public class PlayerShooting : MonoBehaviour {
 
     public Vector3 shootOriginAdjustment;
 
+    public GameObject woodItem;
+
 	void Start () {
         line = GetComponent<LineRenderer>();
         shootableMask = LayerMask.GetMask("Shootable");
@@ -54,6 +56,7 @@ public class PlayerShooting : MonoBehaviour {
             line.SetPosition(1, hit.point);
             GameObject hitObject = hit.collider.gameObject;
             Destroy(hitObject);
+            Instantiate(woodItem, hit.point, Quaternion.identity);
         } else
         {
             line.SetPosition(1, ray.origin + ray.direction * shootRange);
